@@ -3,53 +3,50 @@
 ____
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
-| nickname            | string     | null: false,                   |
+| nickname            | string     | null: false                    |
 | email               | string     | null: false, unique: true      |
-| encrypted_password  | string     | null: false,                   |
-| last_name           | string     | null: false,                   |
-| first_name          | string     | null: false,                   |
-| last_name_kana      | string     | null: false,                   |
-| first_name_kana     | string     | null: false,                   |
-| birth_date          | date       | null: false,                   |
+| encrypted_password  | string     | null: false                    |
+| last_name           | string     | null: false                    |
+| first_name          | string     | null: false                    |
+| last_name_kana      | string     | null: false                    |
+| first_name_kana     | string     | null: false                    |
+| birth_date          | date       | null: false                    |
 
 ### Association
 - has_many :items
-- has_many :addresses
 - has_many :order_histories
 
 ## itemsテーブル
 
-| Column              | Type       | Options                        |
-| ------------------- | ---------- | ------------------------------ |
-| name                | string     | null: false,                   |
-| info                | text       | null: false,                   |
-| categories          | integer    | null: false,                   |
-| sales_status        | integer    | null: false,                   |
-| shipping_fee_status | integer    | null: false,                   |
-| prefectures         | integer    | null: false,                   |
-| scheduled_deliveries| integer    | null: false,                   |
-| price               | integer    | null: false,                   |
-| user                | references | null: false, foreign_key: true |
-
+| Column                 | Type       | Options                        |
+| ---------------------- | ---------- | ------------------------------ |
+| name                   | string     | null: false                    |
+| info                   | text       | null: false                    |
+| category_id            | integer    | null: false                    |
+| sales_status_id        | integer    | null: false                    |
+| shipping_fee_id        | integer    | null: false                    |
+| prefectures_id         | integer    | null: false                    |
+| scheduled_delivery_id  | integer    | null: false                    |
+| price                  | integer    | null: false                    |
+| user                   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- has_one :address
+- has_one :order_histories
 
 ## addressesテーブル
 
 | Column              | Type       | Options                        |
 | ------------------- | ---------- | ------------------------------ |
-| postal_code         | string     | null: false,                   |
-| prefectures         | integer    | null: false,                   |
-| city                | string     | null: false,                   |
-| addresses           | string     | null: false,                   |
+| postal_code         | string     | null: false                    |
+| prefectures_id      | integer    | null: false                    |
+| city                | string     | null: false                    |
+| addresses           | string     | null: false                    |
 | building            | string     |                                |
-| phone_number        | string     | null: false,                   |
+| phone_number        | string     | null: false                    |
+| order_histories     | references | null: false, foreign_key: true |
 
 ### Association
-- belongs_to :user
-- belongs_to :item
 - belongs_to :order_history
 
 ## order_historiesテーブル
@@ -61,4 +58,5 @@ ____
 
 ### Association
 - belongs_to :user
-- has_one :addresses
+- belongs_to :item
+- has_one :address
