@@ -2,11 +2,11 @@ class Item < ApplicationRecord
 
   validates :name, precence: true
   validates :info, precence: true
-  validates :category, precence: true
-  validates :sales_status, precence: true
-  validates :shipping_fee, precence: true
-  validates :prefecture, precence: true
-  validates :scheduled_delivery, precence: true
+  validates :category_id, precence: true, numericality: { other_than: 1 } 
+  validates :sales_status_id, precence: true, numericality: { other_than: 1 } 
+  validates :shipping_fee_id, precence: true, numericality: { other_than: 1 } 
+  validates :prefecture_id, precence: true, numericality: { other_than: 1 } 
+  validates :scheduled_delivery_id, precence: true, numericality: { other_than: 1 } 
   PRICE_REGEX = /^[0-9]+$/.freeze
   validates_format_of :price, precence: true, numericality: { in: 300..9999999 }, with: PRICE = REGEX
 
@@ -14,10 +14,11 @@ class Item < ApplicationRecord
   belings_to :user
   #has_one :order_history
   has_one_attached :image
-  
+
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
   belongs_to :sales_status
   belongs_to :shipping_fee
   belongs_to :prefecture
+  belongs_to :scheduled_delivery
 end
