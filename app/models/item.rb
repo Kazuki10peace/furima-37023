@@ -2,11 +2,11 @@ class Item < ApplicationRecord
 
   validates :name, precence: true
   validates :info, precence: true
-  validates :category_id, precence: true, numericality: { other_than: 1 } 
-  validates :sales_status_id, precence: true, numericality: { other_than: 1 } 
-  validates :shipping_fee_id, precence: true, numericality: { other_than: 1 } 
-  validates :prefecture_id, precence: true, numericality: { other_than: 1 } 
-  validates :scheduled_delivery_id, precence: true, numericality: { other_than: 1 } 
+  validates :category_id, precence: true, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :sales_status_id, precence: true, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :shipping_fee_id, precence: true, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :prefecture_id, precence: true, numericality: { other_than: 1 , message: "can't be blank"}
+  validates :scheduled_delivery_id, precence: true, numericality: { other_than: 1 , message: "can't be blank"}
   PRICE_REGEX = /^[0-9]+$/.freeze
   validates_format_of :price, precence: true, numericality: { in: 300..9999999 }, with: PRICE = REGEX
 
