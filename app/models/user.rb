@@ -16,6 +16,6 @@ class User < ApplicationRecord
   validates :birth_date, presence: true
 
   #まだ先の実装のためコメントアウトしています。
-  #has_many :items
+  has_many :items
   #has_many :order_histories
 end
