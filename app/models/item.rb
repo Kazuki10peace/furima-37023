@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   validates :shipping_fee_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :prefecture_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
   validates :scheduled_delivery_id, presence: true, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :price, presence: true, format: { with: /\A[0-9]+\z/, message: "Half-width number" }, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "Out of setting range" }, only_integer: true
+  validates :price, presence: true, format: { with: /\A[0-9]+\z/, message: "Half-width number" }, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999, message: "Out of setting range", only_integer: true}
 
   #まだ先の実装の分はコメントアウト
   belongs_to :user
