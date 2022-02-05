@@ -11,7 +11,7 @@ class Item < ApplicationRecord
   validates_format_of :price, with: PRICE_REGEX, presence: true, numericality: { in: 300..9999999 },
 
   #まだ先の実装の分はコメントアウト
-  belings_to :user
+  belongs_to :user
   #has_one :order_history
   has_one_attached :image
 
