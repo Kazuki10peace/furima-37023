@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   def index
-    @item = Item.all
+    #@item = Item.all 一覧表示実装時外す
   end
 
   def new
