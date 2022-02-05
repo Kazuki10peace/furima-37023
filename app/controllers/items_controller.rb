@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     #@item = Item.all 一覧表示実装時外す
