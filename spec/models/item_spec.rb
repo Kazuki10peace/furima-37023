@@ -16,7 +16,7 @@ RSpec.describe Item, type: :model do
       it 'imageが空だと出品できない' do
         @item.image = nil
         @item.valid?
-        expect(@item.errors.full_messsages).to include("Image can't be blank")
+        expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it 'nameが空だと出品できない' do
         @item.name = ''
@@ -26,27 +26,42 @@ RSpec.describe Item, type: :model do
       it 'infoが空だと出品できない' do
         @item.info = ''
         @item.valid?
-        expect(@item.errors.full_messsages).to include("Info can't be blank")
+        expect(@item.errors.full_messages).to include("Info can't be blank")
       end
       it 'category_idが未選択だと出品できない' do
+        @item.category_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it 'sales_status_idが未選択だと出品できない' do
+        @item.sales_status_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Sales status can't be blank")
       end
       it 'shipping_fee_idが未選択だと出品できない' do
+        @item.shipping_fee_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping fee can't be blank")
       end
       it 'prefecture_idが未選択だと出品できない' do
+        @item.prefecture_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
       end
-      it 'schedule_delivary_idが未選択だと出品できない' do
+      it 'scheduled_delivery_idが未選択だと出品できない' do
+        @item.scheduled_delivery_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Scheduled delivery can't be blank")
       end
       it 'priceが空だと出品できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messsages).to include("Price can't be blank")
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceが全角数字だと出品できない' do
-        @item.price = "２０００"
+        @item.price = "１０００"
         @item.valid?
-        expect(@item.errors.full_messsages).to include("")
+        expect(@item.errors.full_messages).to include("Price Out of setting range")
       end
     end
   end
