@@ -18,7 +18,7 @@ class ItemsController < ApplicationController
     end
   end
 
-  def edit
+  def show
   end
 
   private
