@@ -23,10 +23,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless current_user.id == @item.user.id
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user.id == @item.user.id
   end
+
   def update
     if @item.update(item_params)
       redirect_to item_path(@item)
@@ -38,12 +37,9 @@ class ItemsController < ApplicationController
   def destroy
     item = Item.find(params[:id])
     item.destroy
-    unless current_user.id == item.user.id
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user.id == item.user.id
     redirect_to root_path
   end
-
 
   private
 
@@ -52,9 +48,7 @@ class ItemsController < ApplicationController
                                  :scheduled_delivery_id, :price).merge(user_id: current_user.id)
   end
 
-
   def set_item
     @item = Item.find(params[:id])
   end
-
 end
