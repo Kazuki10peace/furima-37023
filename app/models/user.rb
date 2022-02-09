@@ -15,7 +15,6 @@ class User < ApplicationRecord
   validates_format_of :first_name_kana, with: KANA_REGEX
   validates :birth_date, presence: true
 
-  # まだ先の実装のためコメントアウトしています。
   has_many :items
-  # has_many :order_histories
+  has_many :order_histories
 end
