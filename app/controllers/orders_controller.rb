@@ -5,6 +5,9 @@ class OrdersController < ApplicationController
     @orders = Order.new
     @item = Item.find(params[:item_id])
     @address = Address.new
+    if current_user.id == @item.user.id
+      redirect_to root_path
+    end
   end
 
   def create
