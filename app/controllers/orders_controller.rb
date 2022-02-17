@@ -2,19 +2,23 @@ class OrdersController < ApplicationController
   before_action :authenticate_user!, only: [:index]
 
   def index
-    @orders = Order.new
+    @order_history = OrderHistory.new
     @item = Item.find(params[:item_id])
     @address = Address.new
     if current_user.id == @item.user.id
       redirect_to root_path
     end
   end
+  
+  def new
+    @order_history_address = OrderHistoryAddress.new
+  end
 
   def create
-    @order = Order.new(order_params)
-    if @order.valid?
+    @order_history_address = OrderHistoryAddress.new(order_history_params)
+    if @order_history_address.valid?
       pay_item
-      @order.save
+      @order_history_address.save
       return redirect_to root_path
     else
       render 'index'
@@ -23,19 +27,14 @@ class OrdersController < ApplicationController
 
   private
 
-  def order_params
-    params.require(:order).permit(:price).merge(token: params[:token])
-  end
-
-  def address_params
-    params.permit(:postal_code, :prefecture_id, :city, :address, :building, :phone_number).merge(order_id: @order.id)
+  def order_history_params
+    params.require(:order_history_address).permit(:postal_code, :prefecture_id, :city, :address, :building, :phone_number).merge(user_id: current_user.id, token: params[:token])
   end
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
-      amount: order_params[:price],
-      card: order_params[:token],
+      card: order_history_params[:token],
       currency: 'jpy'
     )
   end
