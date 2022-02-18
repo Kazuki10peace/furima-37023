@@ -3,6 +3,9 @@ class OrdersController < ApplicationController
   before_action :set_item, only: [:index, :create]
 
   def index
+    if @item.user_id == current_user.id || @item.order_history != nil
+      redirect_to root_path
+    end
     @order_history_address = OrderHistoryAddress.new
   end
 
