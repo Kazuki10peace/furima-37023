@@ -8,11 +8,12 @@ class OrderHistoryAddress
     validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]/ }
     validates :addresses
-    validates :phone_number, format: { with: /\A\d{11}\z/}
+    validates :phone_number, format: { with: /\A\d{11}\z/ }
   end
 
   def save
     order_history = OrderHistory.create(user_id: user_id, item_id: item_id)
-    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, addresses: addresses, building: building, phone_number: phone_number, order_history_id: order_history.id)
+    Address.create(postal_code: postal_code, prefecture_id: prefecture_id, city: city, addresses: addresses, building: building,
+                   phone_number: phone_number, order_history_id: order_history.id)
   end
 end
