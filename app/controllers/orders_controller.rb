@@ -8,6 +8,7 @@ class OrdersController < ApplicationController
 
   def create
     @order_history_address = OrderHistoryAddress.new(address_params)
+    binding.pry
     if @order_history_address.valid?
       pay_item
       @order_history_address.save
@@ -23,7 +24,6 @@ class OrdersController < ApplicationController
     params.require(:order_history_address).permit(:postal_code, :prefecture_id, :city, :addresses, :building, :phone_number, :order_history_id).merge(
       item_id: params[:item_id],user_id: current_user.id,token: params[:token])
   end
-
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
