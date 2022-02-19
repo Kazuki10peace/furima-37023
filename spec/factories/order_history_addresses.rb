@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :order_history_address do
     postal_code   { '123-4567' }
-    prefecture_id { 2 }
+    prefecture_id { Faker::Number.between(from: 2, to: 48) }
     city          { '東京都' }
     addresses     { '1-1' }
     building      { '東京ハイツ' }
