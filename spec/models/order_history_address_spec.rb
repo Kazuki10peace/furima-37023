@@ -52,15 +52,32 @@ RSpec.describe OrderHistoryAddress, type: :model do
         @order_history_address.valid?
         expect(@order_history_address.errors.full_messages).to include("Phone number can't be blank")
       end
-      it 'phone_numberが11文字でないと登録できない' do
-        @order_history_address.phone_number = '1'
+
+      it 'phone_numberが9文字以下は登録できない' do
+        @order_history_address.phone_number = '12345678'
         @order_history_address.valid?
         expect(@order_history_address.errors.full_messages).to include('Phone number is invalid')
       end
-      it 'phone_numberが数字のみでないと登録できない' do
-        @order_history_address.phone_number = '1-1'
+      it 'phone_numberが1２文字異常は登録できない' do
+        @order_history_address.phone_number = '000111122223333'
         @order_history_address.valid?
         expect(@order_history_address.errors.full_messages).to include('Phone number is invalid')
+      end
+
+      it 'phone_numberが半角数字のみでないと登録できない' do
+        @order_history_address.phone_number = '000-0000-0000'
+        @order_history_address.valid?
+        expect(@order_history_address.errors.full_messages).to include('Phone number is invalid')
+      end
+      it 'user_idが空では登録できないこと' do
+        @order_history_address.user_id = nil
+        @order_history_address.valid?
+        expect(@order_history_address.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では登録できないこと' do
+        @order_history_address.item_id = nil
+        @order_history_address.valid?
+        expect(@order_history_address.errors.full_messages).to include("Item can't be blank")
       end
       it 'tokenが空では登録できないこと' do
         @order_history_address.token = nil
