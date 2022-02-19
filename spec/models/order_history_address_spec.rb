@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe OrderHistoryAddress, type: :model do
-  before do
-    @order_history_address = FactoryBot.build(:order_history_address)
-  end
-
   describe '商品購入機能' do
+    before do
+      @user = FactoryBot.create(:user)
+      @order_history_address = FactoryBot.build(:order_history_address, user_id: @user.id, item_id: Faker::Number)
+    end
     context '内容に問題ない場合' do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@order_history_address).to be_valid
