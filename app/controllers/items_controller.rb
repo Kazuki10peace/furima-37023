@@ -23,7 +23,11 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    redirect_to root_path unless current_user.id == @item.user.id
+    if current_user.id == !@item.user.id && @item.order_history == nil
+      render :edit
+    else
+      redirect_to root_path 
+    end
   end
 
   def update
