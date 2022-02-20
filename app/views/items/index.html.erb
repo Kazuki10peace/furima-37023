@@ -134,13 +134,11 @@
         <div class='item-img-content'>
           <%= image_tag item.image, class: "item-img" %>
 
-          <%#商品購入機能実装時にコメントアウトはずす%>
-          <%# if item.order_history.blank? %>
+          <% if item.order_history != nil %>
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
-          <%# end %>
-          <%#商品購入機能実装時にコメントアウトはずす%>
+          <% end %>
 
         </div>
         <div class='item-info'>
