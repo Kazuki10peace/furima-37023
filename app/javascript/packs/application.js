@@ -8,6 +8,7 @@ require("@rails/ujs").start()
 require("channels")
 require("../price_calculation");
 require("../card");
+require('../preview')
 
 
 
