@@ -13,7 +13,8 @@ ja:
       models:
         user:
           attributes:
-            email.blank: を入力してください
+            email:
+              blank: を入力してください
 
       item:
         image: 商品画像
