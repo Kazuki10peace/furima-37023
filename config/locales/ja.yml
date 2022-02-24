@@ -9,6 +9,10 @@ ja:
         first_name_kana: お名前(カナ)
         birth_date: 生年月日
 
+    errors:
+      messages:
+        email.blank: を入力してください
+        
       item:
         image: 商品画像
         name: 商品名
