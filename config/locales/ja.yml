@@ -11,10 +11,7 @@ ja:
 
     errors:
       models:
-        user:
-          attributes:
-            email:
-              blank: を入力してください
+        user.attributes.email.blank: "を入力してください"
 
       item:
         image: 商品画像
