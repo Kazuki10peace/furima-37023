@@ -1,11 +1,5 @@
 ja:
   activerecord:
-    errors:
-      models:
-        user:
-          attributes:
-            email:
-              blank: を入力してください
     attributes:
       user:
         confirmation_sent_at: パスワード確認送信時刻
